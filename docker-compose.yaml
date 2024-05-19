@@ -1,0 +1,15 @@
+---
+
+version: '3'
+
+services:
+  ansible:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: 'ansible'
+    working_dir: '/home/TechLabSatoru'
+    tty: true
+    volumes:
+      - './:/home/TechLabSatoru/'
+      - '/var/run/docker.sock:/var/run/docker.sock'

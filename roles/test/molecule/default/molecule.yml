@@ -1,0 +1,18 @@
+---
+
+dependency:
+  name: galaxy
+  enabled: false
+
+driver:
+  name: docker
+
+platforms:
+  - name: centos
+    image: centos:7
+
+provisioner:
+  name: ansible
+  env:
+    ANSIBLE_LIBRARY: ../../../../library/
+    ANSIBLE_ACTION_PLUGINS: ../../../../action_plugins/

@@ -1,0 +1,10 @@
+---
+
+- name: Verify OS Info
+  test:
+    os_name: Debian GNU/Linux
+  register: result
+
+- name: Print result
+  ansible.builtin.debug:
+    msg: "{{ result }}"

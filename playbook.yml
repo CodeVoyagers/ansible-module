@@ -1,0 +1,19 @@
+---
+
+- name: Test test module
+  hosts: localhost
+  gather_facts: false
+  tasks:
+
+    - name: Exec test module with dry run mode.
+      test:
+        os_name: Linux
+      check_mode: true
+
+    - name: Exec test module. This is normal test.
+      test:
+        os_name: Debian GNU/Linux
+
+    - name: Exec test module. This is abnormal test.
+      test:
+        os_name: Linux
