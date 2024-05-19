@@ -32,12 +32,12 @@ def verify_os_info(os_name, os_version):
     '''Compare the os information which is got from the user and '/etc/os-release'.
     '''
 
-    expected_os_name, expected_os_version = get_os_info()
+    actual_os_name, actual_os_version = get_os_info()
 
-    if os_name == expected_os_name:
+    if os_name == actual_os_name:
         if os_version == '':
             message = 'It is correct.'
-        elif os_version == expected_os_version:
+        elif os_version == actual_os_version:
             message = 'It is correct.'
         else:
             message = 'It is wrong.'
@@ -65,22 +65,23 @@ def main():
 
     message = verify_os_info(module.params['os_name'], module.params['os_version'])
 
-    expected_os_name, expected_os_version = get_os_info()
+    actual_os_name, actual_os_version = get_os_info()
 
     if module.check_mode or 'correct' in message:
         module.exit_json(
             changed=False,
             message=message,
-            expected_os_name_on_managed_node=expected_os_name,
-            expected_os_version_on_managed_node=expected_os_version,
+            actual_os_name_on_managed_node=actual_os_name,
+            actual_os_version_on_managed_node=actual_os_version,
         )
     else:
         module.fail_json(
             msg=message,
             changed=False,
-            message=message,
-            expected_os_name_on_managed_node=expected_os_name,
-            expected_os_version_on_managed_node=expected_os_version,
+            expected_os_name=module.params['os_name'],
+            expected_os_version=module.params['os_version'],
+            actual_os_name_on_managed_node=actual_os_name,
+            actual_os_version_on_managed_node=actual_os_version,
         )
 
 if __name__ == '__main__':

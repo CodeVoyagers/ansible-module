@@ -32,22 +32,24 @@ class ActionModule(ActionBase):
         message = self.verify_os_info(os_name, os_version)
 
         # Get actual os information on Control Node.
-        expected_os_name, expected_os_version = self.get_os_info()
+        actual_os_name, actual_os_version = self.get_os_info()
 
         if 'correct' in message:
             result.update({
                 'changed': False,
                 'message': message,
-                'expected_os_name_on_control_node': expected_os_name,
-                'expected_os_version_on_control_node': expected_os_version,
+                'actual_os_name_on_control_node': actual_os_name,
+                'actual_os_version_on_control_node': actual_os_version,
             })
         else:
             result.update({
                 'failed': True,
+                'msg': message,
                 'changed': False,
-                'message': message,
-                'expected_os_name_on_control_node': expected_os_name,
-                'expected_os_version_on_control_node': expected_os_version,
+                'expected_os_name': os_name,
+                'expected_os_version': os_version,
+                'actual_os_name_on_control_node': actual_os_name,
+                'actual_os_version_on_control_node': actual_os_version,
             })
 
         return result
@@ -83,12 +85,12 @@ class ActionModule(ActionBase):
         '''Compare the os information which is got from the user and '/etc/os-release'.
         '''
 
-        expected_os_name, expected_os_version = self.get_os_info()
+        actual_os_name, actual_os_version = self.get_os_info()
 
-        if os_name == expected_os_name:
+        if os_name == actual_os_name:
             if os_version == '':
                 message = 'It is correct.'
-            elif os_version == expected_os_version:
+            elif os_version == actual_os_version:
                 message = 'It is correct.'
             else:
                 message = 'It is wrong.'
