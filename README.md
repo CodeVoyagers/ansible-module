@@ -4,7 +4,7 @@
 
 **購入はこちらから**
 
-- [技術書典オンラインマーケット]()
+- [技術書典オンラインマーケット](https://techbookfest.org/product/v1zfjqEEQ5VCU5RjExiLZ5)
 
 <img src="images/cover.png" alt="表紙" width=300>
 
